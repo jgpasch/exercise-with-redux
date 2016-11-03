@@ -19,6 +19,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 
+app.use(bp.urlencoded({ extended: true }));
+
+
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.use('/static', express.static(__dirname + '/images'));

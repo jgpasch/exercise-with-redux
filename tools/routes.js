@@ -10,7 +10,11 @@ router.post('/api/exercises', (req, res) => {
   // to-do check for errors in req.query
   // console.log(req.params);
   // console.log(req.query);
-  console.log(req.body);
+  console.log(req.body.category);
+  console.log(req.body.name);
+  console.log(req.body.weight);
+  console.log(req.body.sets);
+  console.log(req.body.reps);
 
   const newExercise = new Exercise({
     name: req.body.name,

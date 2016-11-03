@@ -49,6 +49,7 @@ export function initStep() {
   **                     **
 */
 export function nextStepSuccess(step) {
+  // console.log(typeof step);
   return {
     type: types.NEXT_STEP_SUCCESS,
     step: step
@@ -56,6 +57,7 @@ export function nextStepSuccess(step) {
 }
 
 export function nextStep(step) {
+  // console.log(typeof step);
   return function(dispatch) {
     return dispatch(nextStepSuccess(step));
   };
@@ -87,18 +89,37 @@ export function previousStep(step) {
 export function createExerciseSuccess(exercise) {
   // debugger;
   // console.log(exercises);
+  console.log('in create exercise succes');
+  console.log('withi data' + exercise);
   return { type:
     types.CREATE_EXERCISE_SUCCESS,
     exercise
   };
 }
 
-export function createExercise() {
+export function createExercise(exercise) {
   // debugger;
   return function(dispatch) {
-    return exercisesApi.createExercise((exercise) => {
+    return exercisesApi.createExercise(exercise, (exercise) => {
+      // console.log(exercise);
+      console.log(exercise);
       dispatch(createExerciseSuccess(exercise));
     }); 
 
+  };
+}
+
+function updateExerciseSuccess(exercise, field, value) {
+  return { 
+    type: types.UPDATE_EXERCISE_SUCCESS,
+    exercise: exercise,
+    newField: { [field]: value}
+  };
+}
+
+// update exercise
+export function updateExercise(exercise, field, value) {
+  return function(dispatch) {
+    return dispatch(updateExerciseSuccess(exercise, field, value));
   };
 }
