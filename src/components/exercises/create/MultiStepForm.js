@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as exerciseActions from '../../../actions/exerciseActions';
 import MyButton from './MyButton';
+import MySubmitButton from './MySubmitButton';
 import TextInput from '../../common/TextInput';
 
 
@@ -10,10 +11,12 @@ class MultiStepForm extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      step: this.props.step
+      step: this.props.step,
+      saving: false
     };
     this.update = this.update.bind(this);
     this.nextStep = this.nextStep.bind(this);
+    this.submitExercise = this.submitExercise.bind(this);
   }
 
   update(event) {
@@ -21,6 +24,14 @@ class MultiStepForm extends Component {
   }
 
   nextStep() {
+    this.props.continue(this.props.step);
+  }
+
+  submitExercise() {    
+    this.setState({
+      saving: true
+    });
+
     this.props.continue(this.props.step);
   }
 
@@ -44,7 +55,7 @@ class MultiStepForm extends Component {
                  <TextInput  name="reps" onChange={this.update} placeholder="reps" />
                </div>);
       default:
-        return (<div> <MyButton step={this.nextStep} value="submit" />
+        return (<div> <MySubmitButton isSaving={this.state.saving} step={this.submitExercise} value="submit" />
                </div>);
     }
   }

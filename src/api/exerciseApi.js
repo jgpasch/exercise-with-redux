@@ -7,16 +7,11 @@ export default class ExerciseApi {
     });
   }
 
-  static createExercise(exercise, cb) {
-    // console.log(exercise);
-    $.ajax({
+  static createExercise(exercise) {
+    return $.ajax({
       type: 'POST',
       url: appConfig.appUrl + '/api/exercises',
-      data: exercise,
-      dataType: "json",
-      success: function(data) {
-        cb(data);
-      }
+      data: exercise
     }); 
   }
 }

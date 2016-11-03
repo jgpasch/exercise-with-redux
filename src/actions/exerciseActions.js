@@ -98,16 +98,27 @@ export function createExerciseSuccess(exercise) {
 }
 
 export function createExercise(exercise) {
-  // debugger;
-  return function(dispatch) {
-    return exercisesApi.createExercise(exercise, (exercise) => {
-      // console.log(exercise);
-      console.log(exercise);
-      dispatch(createExerciseSuccess(exercise));
-    }); 
 
+  return function(dispatch) {
+    return exercisesApi.createExercise(exercise).then(exercise => {
+      // true ? dispatch(createExerciseSuccess(exercise)) : console.log('butt');
+      dispatch(createExerciseSuccess(exercise));      
+    });
   };
 }
+
+// export function saveCourse(course) {
+//   // debugger;
+//   return function(dispatch, getState) {
+//     dispatch(beginAjaxCall());
+//     return courseApi.saveCourse(course).then(course => {
+//       course.id ? dispatch(updateCourseSuccess(course)) :
+//         dispatch(createCourseSuccess(course));
+//     }).catch(error => {
+//       throw(error);
+//     });
+//   };
+// }
 
 function updateExerciseSuccess(exercise, field, value) {
   return { 

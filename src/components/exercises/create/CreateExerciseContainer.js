@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { browserHistory } from 'react-router';
+import toastr from 'toastr';
 import * as exerciseActions from '../../../actions/exerciseActions';
 import TextInput from '../../common/TextInput';
 import MyButton from './MyButton';
@@ -12,26 +14,34 @@ class CreateExerciseContainer extends Component {
     super(props, context);
     this.nextStep = this.nextStep.bind(this);
     this.updateNewExercise = this.updateNewExercise.bind(this);
+    this.redirect = this.redirect.bind(this);    
   }
 
   nextStep(step) {
     if (step == 5) {
-      // console.log('lets save this bad boy');
-      // console.log(Object.assign({}, this.props.exercise, {category: 0}));
-      this.props.actions.createExercise(Object.assign({}, this.props.exercise, {category: 0}));
+      this.props.actions.createExercise(Object.assign({}, this.props.exercise, {category: 0}))
+      .then(() => {
+          toastr.success('Exercise saved successfully');        
+          this.redirect();
+          this.props.actions.loadExercises();
+        });
     } else
       this.props.actions.nextStep(step);
   }
 
+  redirect() {
+    this.setState({
+      saving: false
+    });
+    browserHistory.push('/');
+  }
+
   updateNewExercise(event) {
-    
     const field = event.target.name;
     const value = event.target.value;
     const exercise = this.props.exercise;
 
     this.props.actions.updateExercise(exercise, field,value);
-
-    // console.log(n);
   }
 
   render() {

@@ -7,6 +7,7 @@ import configureStore from './store/configureStore';
 import { loadExercises } from './actions/exerciseActions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/custom.css';
+import '../node_modules/toastr/build/toastr.min.css';
 
 /*eslint-disable no-console*/
 
