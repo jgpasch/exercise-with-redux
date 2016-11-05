@@ -1,38 +1,89 @@
 import React, {Component, PropTypes} from 'react';
 import Button from '../../common/Button';
+import MuscGroupBtn from './MuscGroupBtn';
 
 class ButtonGroup extends Component {
   constructor(props, context) {
     super(props, context);
-    this.wasSelected = this.wasSelected.bind(this);
+    this.state = {
+      selectedItem: null
+    };
+    this.selectItem = this.selectItem.bind(this);
   }
 
-  wasSelected(elem) {
-    // console.log('ims elected');
+  // this func gets triggered when a child button has been clicked
+  selectItem(item) {
+    this.setState({
+      selectedItem: item
+    });
   }
 
   render() {
+    let selectedKey;
+    if (this.state.selectedItem == null) {
+      //no selected button yet
+      selectedKey = 1000;
+    } else {
+      selectedKey = this.state.selectedItem.props.mgNum;
+    }
+
+    // init empty children array, this will hold 3 newly created MuscGroupBtns
+    let children = [];
+
+    if (selectedKey != null) {
+      // for loop execs 3 times for each musc btn
+      for (let i = 0; i < 3; i++) {    
+        let props = {
+          whenClicked: this.selectItem
+        };
+
+        switch(i) {
+          case 0:
+            if (i === selectedKey) {
+              props.myClass = " exercise zero";
+            }
+            props.text = "chest and tri";
+            props.mgNum = i;
+            props.key = i;
+            break;
+
+          case 1: 
+            if (i === selectedKey) {
+              props.myClass = " exercise one";
+            }
+            props.text = "leg & shoulders";
+            props.mgNum = i; 
+            props.key = i;           
+            break;
+
+          case 2: 
+            if (i === selectedKey) {
+              props.myClass = " exercise two";             
+            }
+            props.text = "back & bi";
+            props.mgNum = i;
+            props.key = i;
+            break;
+
+          default: 
+
+        }
+        // create a new MuscGroupBtn elem from props we just made
+        const newChild = React.createElement(MuscGroupBtn, props);
+        children.push(newChild);
+      }
+    }
+
     return (
       <div className="btn-group muscleGroupBtnDiv col-xs-12 col-md-8 col-md-offset-4" role="group">
-        <Button wasSelected={this.wasSelected} text="chest and tri"/>
-        <Button wasSelected={this.wasSelected} text="leg and shoulders"/>
-        <Button wasSelected={this.wasSelected} text="back and bi"/>
+        {children}
       </div>
     );
   }
 }
 
-// function mapStateToProps(state, ownProps) {
-//   return {
-//     newExercise: state.newExercise
-//   };
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(exerciseActions, dispatch)
-//   };
-// }
+ButtonGroup.propTypes = {
+    children: React.PropTypes.node
+};
 
 export default ButtonGroup;
-// export default connect(mapStateToProps, mapDispatchToProps)(ButtonGroup);

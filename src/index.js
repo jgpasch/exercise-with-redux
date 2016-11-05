@@ -8,7 +8,8 @@ import { loadExercises } from './actions/exerciseActions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './css/custom.css';
 import '../node_modules/toastr/build/toastr.min.css';
-
+import $ from '../node_modules/jquery/dist/jquery.min.js';
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 /*eslint-disable no-console*/
 
 const store = configureStore();

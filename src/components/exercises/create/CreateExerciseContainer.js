@@ -12,9 +12,10 @@ import ButtonGroup from './ButtonGroup';
 class CreateExerciseContainer extends Component {
   constructor(props, context) {
     super(props, context);
+    this.props.actions.initStep();
     this.nextStep = this.nextStep.bind(this);
     this.updateNewExercise = this.updateNewExercise.bind(this);
-    this.redirect = this.redirect.bind(this);    
+    this.redirect = this.redirect.bind(this);
   }
 
   nextStep(step) {
@@ -47,7 +48,7 @@ class CreateExerciseContainer extends Component {
   render() {
     return (
       <div>
-        <ButtonGroup />
+        <ButtonGroup/>
         <MultiStepForm update={this.updateNewExercise} continue={this.nextStep} step={this.props.step} />
       </div>
     );
