@@ -5,7 +5,8 @@ const ExerciseSchema = new mongoose.Schema({
   weight: Number,
   sets: Number,
   reps: Number,
-  category: Number
+  category: Number,
+  date: {type: Date}
 });
 
 const Exercise = mongoose.model('Exercise', ExerciseSchema);

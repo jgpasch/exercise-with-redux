@@ -16,6 +16,8 @@ class ButtonGroup extends Component {
     this.setState({
       selectedItem: item
     });
+    // setTimeout(() => this.props.step(), 200);
+    this.props.step();
   }
 
   render() {
@@ -75,8 +77,10 @@ class ButtonGroup extends Component {
     }
 
     return (
-      <div className="btn-group muscleGroupBtnDiv col-xs-12 col-md-8 col-md-offset-4" role="group">
-        {children}
+      <div className="btn-group muscleGroupBtnDiv col-xs-12" role="group">
+        <div className="text-center">
+          {children}
+        </div>
       </div>
     );
   }

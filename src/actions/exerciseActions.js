@@ -22,6 +22,23 @@ export function loadExercises() {
   };
 }
 
+function getExercisesByDateSuccess(data) {
+  debugger;
+  return {
+    type: types.GET_EXERCISES_BY_DATE_SUCCESS,
+    datedExercises: data
+  };
+}
+
+export function getExercisesByDate(date) {
+  // console.log(`now passing date (${date.toString()}) to api`);
+  return function(dispatch) {
+    return exercisesApi.getExercisesByDate(date, (data) => {
+      dispatch(getExercisesByDateSuccess(data));
+    });
+  };
+}
+
 
 /*  
   **                     **
@@ -89,8 +106,8 @@ export function previousStep(step) {
 export function createExerciseSuccess(exercise) {
   // debugger;
   // console.log(exercises);
-  console.log('in create exercise succes');
-  console.log('withi data' + exercise);
+  // console.log('in create exercise succes');
+  // console.log('withi data' + exercise);
   return { type:
     types.CREATE_EXERCISE_SUCCESS,
     exercise
@@ -132,5 +149,20 @@ function updateExerciseSuccess(exercise, field, value) {
 export function updateExercise(exercise, field, value) {
   return function(dispatch) {
     return dispatch(updateExerciseSuccess(exercise, field, value));
+  };
+}
+
+function getUniqueDatesSuccess(data) {
+  return {
+    type: types.GET_UNIQUE_DATES_SUCCESS,
+    dates: data
+  };
+}
+
+export function getUniqueDates() {
+  return function(dispatch) {
+    return exercisesApi.getUniqueDates((data) => {
+      dispatch(getUniqueDatesSuccess(data));
+    }); 
   };
 }

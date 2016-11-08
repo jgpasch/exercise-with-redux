@@ -19,12 +19,15 @@ class CreateExerciseContainer extends Component {
   }
 
   nextStep(step) {
-    if (step == 5) {
+    if (step == 6) {
       this.props.actions.createExercise(Object.assign({}, this.props.exercise, {category: 0}))
       .then(() => {
           toastr.success('Exercise saved successfully');        
           this.redirect();
           this.props.actions.loadExercises();
+        })
+        .catch(() => {
+          toastr.error('you have an error');
         });
     } else
       this.props.actions.nextStep(step);
@@ -48,7 +51,6 @@ class CreateExerciseContainer extends Component {
   render() {
     return (
       <div>
-        <ButtonGroup/>
         <MultiStepForm update={this.updateNewExercise} continue={this.nextStep} step={this.props.step} />
       </div>
     );

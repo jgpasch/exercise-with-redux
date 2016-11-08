@@ -25,7 +25,7 @@ class MuscGroupBtn extends Component {
   render() {
     let btnStyle = "btn btn-default mgBtn";
     if (this.props.myClass == undefined) {
-      console.log('im undefined');
+      // console.log('im undefined');
     }
     // this.props.myClass == undefined ? this.props.myClass : "";
     // console.log(btnStyle + this.props.myClass);

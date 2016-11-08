@@ -5,6 +5,7 @@ import * as exerciseActions from '../../../actions/exerciseActions';
 import MyButton from './MyButton';
 import MySubmitButton from './MySubmitButton';
 import TextInput from '../../common/TextInput';
+import ButtonGroup from './ButtonGroup';
 
 
 class MultiStepForm extends Component {
@@ -39,26 +40,56 @@ class MultiStepForm extends Component {
     switch(this.props.step) {
       case 1:
         return (<div>
-                 <MyButton step={this.nextStep} value="continue" />
-                 <TextInput name="name" onChange={this.update} placeholder="name" />
+                  <ButtonGroup step={this.nextStep}/>
                </div>);
       case 2:
         return (<div> <MyButton step={this.nextStep} value="continue" />
-                 <TextInput name="weight" onChange={this.update} placeholder="weight" />
+                 <TextInput name="name" onChange={this.update} placeholder="name" />
                </div>);
       case 3:
         return (<div> <MyButton step={this.nextStep} value="continue" />
-                 <TextInput  name="sets" onChange={this.update} placeholder="sets" />
+                 <TextInput name="weight" onChange={this.update} placeholder="weight" />
                </div>);
       case 4:
         return (<div> <MyButton step={this.nextStep} value="continue" />
-                 <TextInput  name="reps" onChange={this.update} placeholder="reps" />
+                 <TextInput  name="sets" onChange={this.update} placeholder="sets" />
                </div>);
+
+      case 5:
+        return (<div> <MyButton step={this.nextStep} value="continue" />
+                 <TextInput  name="reps" onChange={this.update} placeholder="reps" />
+                </div>);
+
       default:
         return (<div> <MySubmitButton isSaving={this.state.saving} step={this.submitExercise} value="submit" />
                </div>);
     }
   }
+
+  // render() {
+  //   switch(this.props.step) {
+  //     case 1:
+  //       return (<div>
+  //                <MyButton step={this.nextStep} value="continue" />
+  //                <TextInput name="name" onChange={this.update} placeholder="name" />
+  //              </div>);
+  //     case 2:
+  //       return (<div> <MyButton step={this.nextStep} value="continue" />
+  //                <TextInput name="weight" onChange={this.update} placeholder="weight" />
+  //              </div>);
+  //     case 3:
+  //       return (<div> <MyButton step={this.nextStep} value="continue" />
+  //                <TextInput  name="sets" onChange={this.update} placeholder="sets" />
+  //              </div>);
+  //     case 4:
+  //       return (<div> <MyButton step={this.nextStep} value="continue" />
+  //                <TextInput  name="reps" onChange={this.update} placeholder="reps" />
+  //              </div>);
+  //     default:
+  //       return (<div> <MySubmitButton isSaving={this.state.saving} step={this.submitExercise} value="submit" />
+  //              </div>);
+  //   }
+  // }
 }
 
 MultiStepForm.propTypes = {
