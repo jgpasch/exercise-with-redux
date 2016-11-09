@@ -1,3 +1,4 @@
+/*eslint-disable import/default*/
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
@@ -15,8 +16,11 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 /*eslint-disable no-console*/
 
 const store = configureStore();
-store.dispatch(loadExercises());
+// store.dispatch(loadExercises());
+console.log('loading unique dates');
 store.dispatch(getUniqueDates());
+console.log('done laoding unique dates');
+
 
 render(
   <Provider store={store}>

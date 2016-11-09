@@ -22,10 +22,8 @@ export default class ExerciseApi {
   }
 
   static getExercisesByDate(date, cb) {
-    debugger;
     // console.log('date is inside api call: ' + date.toString());
     // console.log(typeof date);
-    debugger;
     return $.get(appConfig.appUrl + '/api/exercises/' + date.toString(), (data) => {
       cb(data);
     });

@@ -16,19 +16,15 @@ class DateExerciseRow extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.date = this.props.date.props;
     this.monthString = getMonth(this.date.month);
-    // this.date.month = getMonth(this.date.month);
-    // console.log(typeof this.date);
   }
 
   handleClick() {
     const thisDate = new Date(this.date.year, this.date.month, this.date.date);
-    console.log(`sending date ${thisDate.toString()} to action`);
+    // console.log(`sending date ${thisDate.toString()} to action`);
     this.props.actions.getExercisesByDate(thisDate).then(() => {
+      console.log(`trying to get exercises for date ${thisDate.toString()}`);
       browserHistory.push('/exercises/' + thisDate);
     });
-    // debugger;
-    // setTimeout(() => console.log('hi'), 2000);
-    // browserHistory.push('/exercises/' + thisDate);
   }
 
   render() {

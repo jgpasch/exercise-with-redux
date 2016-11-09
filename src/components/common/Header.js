@@ -13,7 +13,7 @@ const Header = () => {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="#">Workout Tracker</a>
+          <Link className="navbar-brand" to="/">Workout Tracker</Link>
         </div>
 
         <div className="collapse navbar-collapse" id="header-wrapper">  

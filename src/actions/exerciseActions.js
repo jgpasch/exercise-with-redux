@@ -23,7 +23,6 @@ export function loadExercises() {
 }
 
 function getExercisesByDateSuccess(data) {
-  debugger;
   return {
     type: types.GET_EXERCISES_BY_DATE_SUCCESS,
     datedExercises: data
@@ -162,6 +161,7 @@ function getUniqueDatesSuccess(data) {
 export function getUniqueDates() {
   return function(dispatch) {
     return exercisesApi.getUniqueDates((data) => {
+      console.log(data);
       dispatch(getUniqueDatesSuccess(data));
     }); 
   };

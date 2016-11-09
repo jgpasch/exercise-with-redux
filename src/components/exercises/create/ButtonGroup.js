@@ -42,7 +42,7 @@ class ButtonGroup extends Component {
         switch(i) {
           case 0:
             if (i === selectedKey) {
-              props.myClass = " exercise zero";
+              props.myClass = " exercise zero mg-zero";
             }
             props.text = "chest and tri";
             props.mgNum = i;
@@ -60,7 +60,7 @@ class ButtonGroup extends Component {
 
           case 2: 
             if (i === selectedKey) {
-              props.myClass = " exercise two";             
+              props.myClass = " exercise two mg-two";             
             }
             props.text = "back & bi";
             props.mgNum = i;

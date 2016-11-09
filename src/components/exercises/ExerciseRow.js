@@ -23,8 +23,8 @@ const ExerciseRow = ({exercise}) => {
   );
 };
 
-ExerciseRow.propTypes = {
-  exercise: PropTypes.object.isRequired
-};
+// ExerciseRow.propTypes = {
+//   exercise: PropTypes.object.isRequired
+// };
 
 export default ExerciseRow;

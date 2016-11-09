@@ -57,7 +57,7 @@ router.get('/api/exercises/:date', (req, res) => {
   // console.log(req.params);
   const dateObj = new Date(req.params.date);
   // console.log(dateObj.toString);
-  debugger;
+  // debugger;
   let dateProps = {
     year: dateObj.getYear() + 1900,
     month: dateObj.getMonth(),
@@ -90,7 +90,6 @@ function getUniqueDates(data) {
   // iterate through api response, and add all unique dates
   // to the uniqDates array
   for (let thisExercise of data) {
-    // console.log('inside this guy');
     // convert the string to a date obj
     const thisDate = new Date(thisExercise.date);
 

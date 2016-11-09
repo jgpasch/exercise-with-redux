@@ -21,11 +21,21 @@ export default {
     contentBase: './dist'
   },
   plugins: [
+    //optimizes the order that our files are bundle in 
     new webpack.optimize.OccurenceOrderPlugin(),
+
     new webpack.DefinePlugin(GLOBALS),
+    // will generate a new css file, with all css code
     new ExtractTextPlugin('custom.css'),
+    // eliminates duplicate package
     new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
+    // minifies our code
+    new webpack.optimize.UglifyJsPlugin(),
+    // makes jquery work
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    })
   ],
   module: {
     loaders: [

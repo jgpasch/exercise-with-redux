@@ -10,8 +10,11 @@ class DateExercisePage extends Component {
   }
 
   render() {
+    // const dates = new Array(this.props.dates);
+    console.log(this.props.dates);
     const { dates } = this.props;
-    return (
+    // console.log(typeof dates);
+    return (  
       <DateExerciseList dates={dates}/>
     );
   }
