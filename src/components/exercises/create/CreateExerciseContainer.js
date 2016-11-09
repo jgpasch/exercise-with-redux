@@ -6,7 +6,8 @@ import toastr from 'toastr';
 import * as exerciseActions from '../../../actions/exerciseActions';
 import TextInput from '../../common/TextInput';
 import MyButton from './MyButton';
-import MultiStepForm from './MultiStepForm';
+// import MultiStepForm from './MultiStepForm';
+import UnifiedForm from './UnifiedForm';
 import ButtonGroup from './ButtonGroup';
 
 class CreateExerciseContainer extends Component {
@@ -17,11 +18,17 @@ class CreateExerciseContainer extends Component {
     this.updateNewExercise = this.updateNewExercise.bind(this);
     this.redirect = this.redirect.bind(this);
     this.muscleGroupChosen = this.muscleGroupChosen.bind(this);
+    this.state = {
+      ready: false
+    };
   }
 
   muscleGroupChosen() {
     this.props.actions.updateExercise({}, null, null);
     this.props.actions.nextStep(1);
+    this.setState({
+      ready: true
+    });
   }
 
   nextStep(step) {
@@ -46,6 +53,18 @@ class CreateExerciseContainer extends Component {
     browserHistory.push('/');
   }
 
+  // readyForForm() {
+  //   if (this.state.ready) {
+  //     const props = {
+  //       update: this.updateNewExercise,
+  //       continue: this.nextStep,
+  //       step: this.props.step
+  //     };
+  //     console.log('retuning elelemt');
+  //     return React.CreateElement(UnifiedForm, props);
+  //   }
+  // }
+
   updateNewExercise(event) {
     const field = event.target.name;
     const value = event.target.value;
@@ -55,10 +74,11 @@ class CreateExerciseContainer extends Component {
   }
 
   render() {
+    console.log(this.state.ready);
     return (
       <div>
         <ButtonGroup step={this.muscleGroupChosen}/>
-        <MultiStepForm update={this.updateNewExercise} continue={this.nextStep} step={this.props.step} />
+        {this.state.ready && <UnifiedForm update={this.updateNewExercise} continue={this.nextStep} step={this.props.step} />}
       </div>
     );
   }

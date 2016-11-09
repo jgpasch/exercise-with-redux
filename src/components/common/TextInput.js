@@ -4,7 +4,7 @@ const TextInput = ({name, onChange, placeholder, value}) => {
 
   return (
     <div>
-      <label htmlFor={name}>{name}</label>
+
       <div className="field">
         <input
           type="text"
