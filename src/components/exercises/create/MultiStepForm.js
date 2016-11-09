@@ -38,10 +38,6 @@ class MultiStepForm extends Component {
 
   render() {
     switch(this.props.step) {
-      case 1:
-        return (<div>
-                  <ButtonGroup step={this.nextStep}/>
-               </div>);
       case 2:
         return (<div> <MyButton step={this.nextStep} value="continue" />
                  <TextInput name="name" onChange={this.update} placeholder="name" />

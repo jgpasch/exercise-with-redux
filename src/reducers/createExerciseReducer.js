@@ -8,6 +8,8 @@ export default function createExerciseReducer(state = [], action) {
       return Object.assign({}, action.exercise, action.newField);
     case types.UPDATE_EXERCISE_SUCCESS:
       return Object.assign({}, action.exercise, action.newField);
+    case types.MUSCLE_GROUP_CHOSEN_SUCCESS:
+      return {};
     default:
       return state;
   }

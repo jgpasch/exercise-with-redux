@@ -137,6 +137,12 @@ export function createExercise(exercise) {
 // }
 
 function updateExerciseSuccess(exercise, field, value) {
+  if (!field && !value) {
+    return {
+      type: types.MUSCLE_GROUP_CHOSEN_SUCCESS,
+      exercise: {}
+    };
+  }
   return { 
     type: types.UPDATE_EXERCISE_SUCCESS,
     exercise: exercise,

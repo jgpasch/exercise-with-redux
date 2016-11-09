@@ -16,6 +16,12 @@ class CreateExerciseContainer extends Component {
     this.nextStep = this.nextStep.bind(this);
     this.updateNewExercise = this.updateNewExercise.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.muscleGroupChosen = this.muscleGroupChosen.bind(this);
+  }
+
+  muscleGroupChosen() {
+    this.props.actions.updateExercise({}, null, null);
+    this.props.actions.nextStep(1);
   }
 
   nextStep(step) {
@@ -51,6 +57,7 @@ class CreateExerciseContainer extends Component {
   render() {
     return (
       <div>
+        <ButtonGroup step={this.muscleGroupChosen}/>
         <MultiStepForm update={this.updateNewExercise} continue={this.nextStep} step={this.props.step} />
       </div>
     );
