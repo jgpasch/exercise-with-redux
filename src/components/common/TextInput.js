@@ -18,11 +18,11 @@ const TextInput = ({name, onChange, placeholder, value}) => {
   );
 };
 
-TextInput.propTypes = {
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-};
+// TextInput.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   onChange: PropTypes.func.isRequired,
+//   placeholder: PropTypes.string,
+//   value: PropTypes.string,
+// };
 
 export default TextInput;
