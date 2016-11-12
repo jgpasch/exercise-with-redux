@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router';
 import toastr from 'toastr';
 import * as exerciseActions from '../../../actions/exerciseActions';
 import TextInput from '../../common/TextInput';
+import RaisedButton from 'material-ui/RaisedButton';
 import MyButton from './MyButton';
 import MultiStepForm from './MultiStepForm';
 import ButtonGroup from './ButtonGroup';
@@ -58,6 +59,7 @@ class CreateExerciseContainer extends Component {
     return (
       <div>
         <ButtonGroup step={this.muscleGroupChosen}/>
+        <RaisedButton label="myButton"/>
         <MultiStepForm update={this.updateNewExercise} continue={this.nextStep} step={this.props.step} />
       </div>
     );

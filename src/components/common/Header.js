@@ -1,5 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router';
+import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
+
+const styles = {
+  icon: {
+    float: 'right'
+  }
+};
 
 const Header = () => {
   return(
@@ -7,21 +15,8 @@ const Header = () => {
       <div className="container-fluid">
         
         <div className="navbar-header">
-          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-wrapper" aria-expanded="false">
-            <span className="sr-only">Toggle navigation</span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </button>
           <Link className="navbar-brand" to="/">Workout Tracker</Link>
-        </div>
-
-        <div className="collapse navbar-collapse" id="header-wrapper">  
-          <ul className="nav navbar-nav">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/">Workouts</Link></li>
-            <li><Link to="/create">Create New</Link></li>
-          </ul>
+          <IconButton style={styles.icon} ><FontIcon className="material-icons">lightbulb_outline</FontIcon></IconButton>
         </div>
       </div>
     </nav>

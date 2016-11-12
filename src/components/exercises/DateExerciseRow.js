@@ -16,20 +16,26 @@ class DateExerciseRow extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.date = this.props.date.props;
     this.monthString = getMonth(this.date.month);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    // $(".doodoo").jGravity();
   }
 
   handleClick() {
+    $('body').jGravity();
     const thisDate = new Date(this.date.year, this.date.month, this.date.date);
     // console.log(`sending date ${thisDate.toString()} to action`);
     this.props.actions.getExercisesByDate(thisDate).then(() => {
       console.log(`trying to get exercises for date ${thisDate.toString()}`);
-      browserHistory.push('/exercises/' + thisDate);
+      // browserHistory.push('/exercises/' + thisDate);
     });
   }
 
   render() {
     return (
-      <div className="row">
+      <div className="row doodoo">
         <div onClick={this.handleClick} className={"date-row col-xs-6 col-md-6 col-lg-4 col-xs-offset-3 col-md-offset-3 col-lg-offset-4 well well-sm"}>
           <h2>{this.monthString} {this.date.date}</h2>
           <h5>{this.date.year}</h5>

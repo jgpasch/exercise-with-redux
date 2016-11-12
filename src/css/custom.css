@@ -1,5 +1,6 @@
 body {
-  background-color: #bbb;
+  background-color: #c9ccd4;
+  font-family: 'Roboto', sans-serif;
 }
 
 #header {
@@ -14,6 +15,13 @@ body {
 
 .exercise-name-box {
   margin-top: 10px;
+}
+
+#my-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 .date-row {
@@ -188,12 +196,11 @@ body {
 .add-btn {
   position: fixed;
   right: 100px;
-  bottom: 40px;
+  bottom: 100px;
 }
 
 .add-btn span {
-  /*background-image: url('http://thread.qburst.com/sites/all/themes/thread/images/Add.png');*/
-  background-image: url("http://localhost:8000/static/Add.png");
+  background-image: url("http://192.168.0.22:8000/static/Add.png");
   z-index: 100;
   display: inline-block;
   width: 78px;
@@ -202,8 +209,8 @@ body {
 
 @media only screen and (max-width: 767px) {
   .add-btn {
-    right: 7px;
-    bottom: 5px;
+    right: 10px;
+    bottom: 60px;
   }
 }
 
