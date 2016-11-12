@@ -16,15 +16,9 @@ class DateExerciseRow extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.date = this.props.date.props;
     this.monthString = getMonth(this.date.month);
-    this.componentDidMount = this.componentDidMount.bind(this);
-  }
-
-  componentDidMount() {
-    // $(".doodoo").jGravity();
   }
 
   handleClick() {
-    $('body').jGravity();
     const thisDate = new Date(this.date.year, this.date.month, this.date.date);
     // console.log(`sending date ${thisDate.toString()} to action`);
     this.props.actions.getExercisesByDate(thisDate).then(() => {

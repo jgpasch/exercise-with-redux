@@ -42,6 +42,6 @@ app.listen(port, function(err) {
   if (err) {
     console.log(err);
   } else {
-    open(`http://192.168.0.22:${port}`);
+    open(`http://localhost:${port}`);
   }
 });

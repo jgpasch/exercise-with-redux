@@ -200,7 +200,7 @@ body {
 }
 
 .add-btn span {
-  background-image: url("http://192.168.0.22:8000/static/Add.png");
+  background-image: url("http://localhost:8000/static/Add.png");
   z-index: 100;
   display: inline-block;
   width: 78px;
