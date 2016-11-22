@@ -58,12 +58,17 @@ body {
   clear: both;
 }
 
+#mainView {
+  height: 430px;
+  overflow-x: hidden;
+}
+
 .mgBtn {
   height: 50px;
 }
 
 .exercise.zero {
-  background-color: rgb(51,122,183);
+  background-color: rgb(51,122,183) !important;
 }
 
 .mg-zero {
@@ -200,7 +205,7 @@ body {
 }
 
 .add-btn span {
-  background-image: url("http://localhost:8000/static/Add.png");
+  background-image: url("http://192.168.1.167:8000/static/Add.png");
   z-index: 100;
   display: inline-block;
   width: 78px;

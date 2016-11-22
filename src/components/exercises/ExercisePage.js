@@ -14,7 +14,9 @@ class ExercisePage extends Component {
   render() {
     const { datedExercises } = this.props;
     return (
-      <ExerciseList exercises={datedExercises}/>
+      <div id="mainView">
+        <ExerciseList exercises={datedExercises}/>
+      </div>
     );
   }
 }

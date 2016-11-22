@@ -23,7 +23,7 @@ class DateExerciseRow extends Component {
     // console.log(`sending date ${thisDate.toString()} to action`);
     this.props.actions.getExercisesByDate(thisDate).then(() => {
       console.log(`trying to get exercises for date ${thisDate.toString()}`);
-      // browserHistory.push('/exercises/' + thisDate);
+      browserHistory.push('/exercises/' + thisDate);
     });
   }
 
