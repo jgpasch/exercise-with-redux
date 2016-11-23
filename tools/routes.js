@@ -1,21 +1,27 @@
 import express from 'express';
 import path from 'path';
+import passport from 'passport';
+import passportStrategies from './passport/strategies';
 import Exercise from '../tools/models/Exercise';
 import _ from 'lodash';
+import { signUpCtrl, signInCtrl } from './controllers/auth';
 
 /* eslint-disable no-console */
 
 const router = express.Router();
 
-router.post('/api/exercises', (req, res) => {
-  // to-do check for errors in req.body
-  // console.log(req.body.category);
-  // console.log(req.body.name);
-  // console.log(req.body.weight);
-  // console.log(req.body.sets);
-  // console.log(req.body.reps);
-  // console.log(req.body.name);
+const requireSignIn = passport.authenticate('local', {session: false});
 
+const requireJwtAuth = passport.authenticate('jwt', {session: false});
+
+// POST a new user
+router.post('/signup', signUpCtrl);
+
+//POST login a user
+router.post('/signin', requireSignIn, signInCtrl);
+
+// POST an exercise
+router.post('/api/exercises', (req, res) => {
   let isError = false;
   
   if (Object.keys(req.body).length < 5) {
@@ -45,6 +51,7 @@ router.post('/api/exercises', (req, res) => {
   });
 });
 
+// GET exercises
 router.get('/api/exercises', (req,res) => {
   Exercise.find({}, (err, results) => {
     if (err)
@@ -53,6 +60,7 @@ router.get('/api/exercises', (req,res) => {
   });
 });
 
+// GET exercises by date
 router.get('/api/exercises/:date', (req, res) => {
   // console.log(req.params);
   const dateObj = new Date(req.params.date);
@@ -74,8 +82,7 @@ router.get('/api/exercises/:date', (req, res) => {
   });
 });
 
-// ctrl function to get all unique dates inside of mongo objects.
-// used to group exercises by the date
+// GET all unique dates
 router.get('/api/dates', (req, res) => {
   Exercise.find({}, (err, results) => {
     let uniqDates = getUniqueDates(results);

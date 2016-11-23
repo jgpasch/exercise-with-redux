@@ -7,6 +7,7 @@ import bp from 'body-parser';
 import config from '../webpack.config.dev';
 import appConfig from '../src/config/config';
 import router from './routes';
+import cors from 'cors';
 
 /* eslint-disable no-console */
 
@@ -19,10 +20,13 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 
-app.use(bp.urlencoded({ extended: true }));
+// app.use(bp.urlencoded({ extended: true }));
+app.use(bp.json({type: '*/*'}));
 
 
 app.use(require('webpack-hot-middleware')(compiler));
+
+app.use(cors());
 
 app.use('/static', express.static(__dirname + '/images'));
 app.use(router);
