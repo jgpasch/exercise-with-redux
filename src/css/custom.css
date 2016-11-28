@@ -78,6 +78,14 @@ body {
   background-color: rgb(92,192,222);
 }
 
+#sign-out {
+
+}
+
+#ddiv {
+  position: relative;
+}
+
 .btn {
   display: inline-block;
   padding: 6px 12px;

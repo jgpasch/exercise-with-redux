@@ -28,3 +28,10 @@ export function authError(error) {
     payload: error
   };
 }
+
+export function logoutUser() {
+  localStorage.removeItem('token');
+  return {
+    type: types.DEAUTH_USER
+  };
+}
