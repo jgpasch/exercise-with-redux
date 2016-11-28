@@ -12,9 +12,14 @@ const localOptions = {
 };
 
 const localLogin = new LocalStrategy(localOptions, (email, password, done) => {
+  // Local login (username and password) strategy
+
+  // search mongo for one user with given email address
   User.findOne({email: email}, (err, user) => {
+
     if (err) return done(err);
 
+    // if there was no user with given email
     if (!user) {
       return done(null, false);
     }

@@ -21,7 +21,7 @@ class Login extends Component {
         <div className="alert alert-danger">
           <strong>Oops! </strong>{this.props.errorMessage}
         </div>
-      )
+      );
     }
   }
 

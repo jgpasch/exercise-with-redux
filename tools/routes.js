@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import passport from 'passport';
-import passportStrategies from './passport/strategies';
+import './passport/strategies';
 import Exercise from '../tools/models/Exercise';
 import _ from 'lodash';
 import { signUpCtrl, signInCtrl } from './controllers/auth';

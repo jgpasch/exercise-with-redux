@@ -4,7 +4,7 @@
   "description": "starter kit for react with webpack",
   "main": "src/index.js",
   "scripts": {
-    "lint": "node_modules/.bin/esw webpack.config.* src tools",
+    "lint": "./node_modules/.bin/esw webpack.config.dev.js src tools",
     "lint:watch": "npm run lint -- --watch",
     "open:src": "babel-node tools/srcServer.js",
     "start": "npm-run-all --parallel open:src lint:watch",
