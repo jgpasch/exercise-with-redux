@@ -28,7 +28,7 @@ class Login extends Component {
   render() {
     const { handleSubmit, fields: {email, password }} = this.props;
     
-    return (<form onSubmit={handleSubmit(this.handleFormSubmit)}>
+    return (<form onSubmit={handleSubmit(this.handleFormSubmit)} className="push-down-40">
               <fieldset className="form-group">
                 <label>Email:</label>
                 <Field name="email" component="input" className="form-control" />
@@ -39,7 +39,7 @@ class Login extends Component {
                 <Field name="password" component="input" type="password" className="form-control" />
               </fieldset>
               {this.renderAlert()}
-              <button action="submit" className="btn btn-primary">Sign In</button>
+              <button action="submit" className="btn btn-primary center-me">Sign In</button>
             </form>);
   }
 }

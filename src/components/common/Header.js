@@ -5,7 +5,31 @@ import { connect } from 'react-redux';
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      menu: false
+    };
     this.renderLinks = this.renderLinks.bind(this);
+    this.menuCloseHandler = this.menuCloseHandler.bind(this);
+    this.menuBtnClickHandler = this.menuBtnClickHandler.bind(this);
+  }
+
+  menuCloseHandler() {
+    console.log('trying to close menu');
+    $('#header-wrapper').collapse('hide');
+    this.setState({
+      menu: false
+    });
+    document.removeEventListener('click', this.menuCloseHandler);
+  }
+
+  menuBtnClickHandler() {
+    if (!this.state.menu) {
+      this.setState({
+        menu: true
+      }, () => {
+        document.addEventListener('click', this.menuCloseHandler);
+      });
+    }
   }
 
   renderLinks() {
@@ -27,11 +51,11 @@ class Header extends Component {
 
   render() {
     return(
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default" id="menubar">
         <div className="container-fluid">
           
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-wrapper" aria-expanded="false">
+            <button onClick={this.menuBtnClickHandler} type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-wrapper" aria-expanded="false" id="med">
               <span className="sr-only">Toggle navigation</span>
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>

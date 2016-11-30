@@ -78,9 +78,14 @@ body {
   background-color: rgb(92,192,222);
 }
 
-#sign-out {
+.center-me {
+  margin: 0 auto !important;
+  display: block !important;
+ }
 
-}
+ .push-down-40 {
+   margin-top: 40px;
+ }
 
 #ddiv {
   position: relative;

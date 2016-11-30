@@ -3,6 +3,24 @@ import * as types from './actionTypes';
 import config from '../config/config';
 import { browserHistory } from 'react-router';
 
+export function signupUser({email, password}) {
+  return function(dispatch) {
+    axios.post(config.appUrl + '/signup', {email, password})
+      .then(response => {
+        // dispatch logged in user action
+        dispatch({type: types.AUTH_USER });
+        // save token to local storage
+        localStorage.setItem('token', response.data.token);
+        //redirect page.
+        browserHistory.push('/exercises');        
+      })
+      .catch( error => {
+        // dispatch error msg action
+        dispatch(authError(error.response.data.error));
+      });
+  };
+}
+
 export function loginUser({email, password}) {
   return function(dispatch) {
     axios.post(config.appUrl + '/signin', {email, password})
@@ -16,10 +34,6 @@ export function loginUser({email, password}) {
         dispatch(authError('bad login credentials'));
       });
   };
-  //submit email/password to server
-
-  // if req is good, update state for auth user
-  // save jwt token
 }
 
 export function authError(error) {
