@@ -9,18 +9,21 @@ import appConfig from '../src/config/config';
 import router from './routes';
 import cors from 'cors';
 
+
 /* eslint-disable no-console */
 
 const port = appConfig.port;
 const app = express();
 const compiler = webpack(config);
 
+// app.use(passport.initialize());
+
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
 }));
 
-// app.use(bp.urlencoded({ extended: true }));
+
 app.use(bp.json({type: '*/*'}));
 
 

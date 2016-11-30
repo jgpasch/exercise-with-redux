@@ -7,13 +7,15 @@ import DateExerciseList from './DateExerciseList';
 class DateExercisePage extends Component {
   constructor(props, context) {
     super(props, context);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.actions.getUniqueDates();
   }
 
   render() {
-    // const dates = new Array(this.props.dates);
-    console.log(this.props.dates);
     const { dates } = this.props;
-    // console.log(typeof dates);
     return (  
       <DateExerciseList dates={dates}/>
     );

@@ -9,8 +9,6 @@ const UserSchema = new mongoose.Schema({
 UserSchema.pre('save', function (next) {
   // save ref to user
   const user = this;
-  console.log(user);
-  console.log(this);
 
   // create salt
   bcrypt.genSalt(10, (err, salt) => {

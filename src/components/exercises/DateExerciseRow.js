@@ -20,9 +20,7 @@ class DateExerciseRow extends Component {
 
   handleClick() {
     const thisDate = new Date(this.date.year, this.date.month, this.date.date);
-    // console.log(`sending date ${thisDate.toString()} to action`);
     this.props.actions.getExercisesByDate(thisDate).then(() => {
-      console.log(`trying to get exercises for date ${thisDate.toString()}`);
       browserHistory.push('/exercises/' + thisDate);
     });
   }

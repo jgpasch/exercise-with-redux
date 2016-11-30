@@ -30,7 +30,6 @@ function getExercisesByDateSuccess(data) {
 }
 
 export function getExercisesByDate(date) {
-  // console.log(`now passing date (${date.toString()}) to api`);
   return function(dispatch) {
     return exercisesApi.getExercisesByDate(date, (data) => {
       dispatch(getExercisesByDateSuccess(data));
@@ -65,7 +64,6 @@ export function initStep() {
   **                     **
 */
 export function nextStepSuccess(step) {
-  // console.log(typeof step);
   return {
     type: types.NEXT_STEP_SUCCESS,
     step: step
@@ -73,7 +71,6 @@ export function nextStepSuccess(step) {
 }
 
 export function nextStep(step) {
-  // console.log(typeof step);
   return function(dispatch) {
     return dispatch(nextStepSuccess(step));
   };
@@ -103,10 +100,6 @@ export function previousStep(step) {
 //CREATE EXERCISE 
 
 export function createExerciseSuccess(exercise) {
-  // debugger;
-  // console.log(exercises);
-  // console.log('in create exercise succes');
-  // console.log('withi data' + exercise);
   return { type:
     types.CREATE_EXERCISE_SUCCESS,
     exercise
@@ -117,24 +110,10 @@ export function createExercise(exercise) {
 
   return function(dispatch) {
     return exercisesApi.createExercise(exercise).then(exercise => {
-      // true ? dispatch(createExerciseSuccess(exercise)) : console.log('butt');
       dispatch(createExerciseSuccess(exercise));      
     });
   };
 }
-
-// export function saveCourse(course) {
-//   // debugger;
-//   return function(dispatch, getState) {
-//     dispatch(beginAjaxCall());
-//     return courseApi.saveCourse(course).then(course => {
-//       course.id ? dispatch(updateCourseSuccess(course)) :
-//         dispatch(createCourseSuccess(course));
-//     }).catch(error => {
-//       throw(error);
-//     });
-//   };
-// }
 
 function updateExerciseSuccess(exercise, field, value) {
   if (!field && !value) {
@@ -167,7 +146,6 @@ function getUniqueDatesSuccess(data) {
 export function getUniqueDates() {
   return function(dispatch) {
     return exercisesApi.getUniqueDates((data) => {
-      console.log(data);
       dispatch(getUniqueDatesSuccess(data));
     }); 
   };

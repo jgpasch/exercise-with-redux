@@ -4,6 +4,7 @@ import config from '../config/config';
 import { browserHistory } from 'react-router';
 
 export function signupUser({email, password}) {
+
   return function(dispatch) {
     axios.post(config.appUrl + '/signup', {email, password})
       .then(response => {

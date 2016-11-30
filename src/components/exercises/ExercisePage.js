@@ -7,8 +7,6 @@ import ExerciseList from './ExerciseList';
 class ExercisePage extends Component {
   constructor(props, context) {
     super(props, context);
-    // this.actions.
-    // console.log(typeof this.props.params.date);
   }
 
   render() {

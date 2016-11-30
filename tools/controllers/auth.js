@@ -3,7 +3,6 @@ import config from '../../src/config/config';
 import jwt from 'jwt-simple';
 
 export function signUpCtrl(req, res, next) {
-  console.log(req.body);
   const email = req.body.email;
   const password = req.body.password;
 
@@ -34,7 +33,6 @@ export function signUpCtrl(req, res, next) {
 
 export function signInCtrl(req, res, next) {
   // at this point, user is already verified
-  console.log('user login successsful');
   res.send({token: tokenForUser(req.user)});
 }
 

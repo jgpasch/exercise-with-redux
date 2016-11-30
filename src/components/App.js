@@ -5,17 +5,7 @@ import AddContentBtn from './common/AddContentBtn';
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.componentDidMount = this.componentDidMount.bind(this);
-    // this.menuCloseHandler = this.menuCloseHandler.bind(this);
   }
-
-  // componentDidMount() {
-  //   document.addEventListener('click', this.menuCloseHandler);
-  // }
-
-  // menuCloseHandler() {
-  //   alert('was clicked');
-  // }
 
   render() {
     return (

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import { connect } from 'react-redux';
+import * as actions from '../../actions/authActions';
 
 class Header extends Component {
   constructor(props) {
@@ -11,15 +12,20 @@ class Header extends Component {
     this.renderLinks = this.renderLinks.bind(this);
     this.menuCloseHandler = this.menuCloseHandler.bind(this);
     this.menuBtnClickHandler = this.menuBtnClickHandler.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   menuCloseHandler() {
-    console.log('trying to close menu');
     $('#header-wrapper').collapse('hide');
     this.setState({
       menu: false
     });
     document.removeEventListener('click', this.menuCloseHandler);
+  }
+
+  logout() {
+    this.props.logoutUser();
+    browserHistory.push('/');
   }
 
   menuBtnClickHandler() {
@@ -35,7 +41,7 @@ class Header extends Component {
   renderLinks() {
     if (this.props.authenticated) {
       return (<li className="nav-item">
-        <Link className="nav-link" to="/signout">Sign Out</Link>
+        <Link className="nav-link" onClick={this.logout} >Sign Out</Link>
       </li>);
     } else {
       return [
@@ -66,8 +72,8 @@ class Header extends Component {
 
           <div className="collapse navbar-collapse" id="header-wrapper">  
             <ul className="nav navbar-nav">
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/">Workouts</Link></li>
+              <li><Link to="/exercises">Home</Link></li>
+              <li><Link to="/exercises">Workouts</Link></li>
               <li><Link to="/create">Create New</Link></li>
               {this.renderLinks()}
             </ul>
@@ -84,4 +90,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, actions)(Header);
