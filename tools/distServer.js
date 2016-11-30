@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import open from 'open';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
+import bp from 'body-parser';
 import appConfig from '../src/config/config';
 import router from './routes';
 
@@ -11,7 +11,9 @@ import router from './routes';
 const port = appConfig.port;
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bp.json({type: '*/*'}));
+
 
 app.use('/static', express.static(__dirname + '/images'));
 app.use(express.static('dist'));
