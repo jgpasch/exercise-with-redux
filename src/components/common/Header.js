@@ -12,7 +12,7 @@ class Header extends Component {
     this.renderLinks = this.renderLinks.bind(this);
     this.menuCloseHandler = this.menuCloseHandler.bind(this);
     this.menuBtnClickHandler = this.menuBtnClickHandler.bind(this);
-    this.logout = this.logout.bind(this);
+    this.logout = this.logout.bind(this);   
   }
 
   menuCloseHandler() {
@@ -38,9 +38,29 @@ class Header extends Component {
     }
   }
 
+  // renderLinks() {
+  //   if (this.props.authenticated) {
+  //     return [<li className="nav-item" key={0}>
+  //       <Link className="nav-link" onClick={this.logout} >Sign Out</Link>
+  //     </li>,
+  //     <li className="nav-item" key={1}>
+  //       <Link className="nav-link" to="/auth/google" >google sign-in</Link>
+  //     </li>];
+  //   } else {
+  //     return [
+  //       <li className="nav-item" key={1}>
+  //         <Link className="nav-link" to="/">Sign In</Link>
+  //       </li>,
+  //       <li className="nav-item" key={2}>
+  //         <Link className="nav-link" to="/signup">Sign Up</Link>
+  //       </li>
+  //     ];
+  //   }
+  // }
+
   renderLinks() {
     if (this.props.authenticated) {
-      return (<li className="nav-item">
+      return (<li className="nav-item" key={0}>
         <Link className="nav-link" onClick={this.logout} >Sign Out</Link>
       </li>);
     } else {

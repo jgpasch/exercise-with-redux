@@ -8,6 +8,7 @@ import config from '../webpack.config.dev';
 import appConfig from '../src/config/config';
 import router from './routes';
 import cors from 'cors';
+import passport from 'passport';
 
 
 /* eslint-disable no-console */
@@ -23,8 +24,25 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 
+app.use(bp.urlencoded({ extended: true }));
 
 app.use(bp.json({type: '*/*'}));
+
+
+
+app.use(require('cookie-parser')());
+
+// passport.serializeUser(function(user, cb) {
+//   cb(null, user);
+// });
+
+// passport.deserializeUser(function(obj, cb) {
+//   cb(null, obj);
+// });
+
+// app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
+
 
 
 app.use(require('webpack-hot-middleware')(compiler));
@@ -37,6 +55,9 @@ app.use(router);
 app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname, '../src/index.html'));
 });
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 mongoose.connect(appConfig.mongoUrl);
 const db = mongoose.connection;
