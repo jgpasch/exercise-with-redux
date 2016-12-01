@@ -27,6 +27,7 @@ export default class ExerciseApi {
   }
 
   static getUniqueDates(cb) {
+    console.log('making api call to /api/dates');
     return $.ajax({
       method: 'GET',
       headers: {

@@ -38,31 +38,14 @@ class Header extends Component {
     }
   }
 
-  renderLinks() {
-    if (this.props.authenticated) {
-      return [<li className="nav-item" key={0}>
-        <Link className="nav-link" onClick={this.logout} >Sign Out</Link>
-      </li>,
-      <li className="nav-item" key={1}>
-        <Link className="nav-link" to="/oauth" >google sign-in</Link>
-      </li>];
-    } else {
-      return [
-        <li className="nav-item" key={1}>
-          <Link className="nav-link" to="/">Sign In</Link>
-        </li>,
-        <li className="nav-item" key={2}>
-          <Link className="nav-link" to="/signup">Sign Up</Link>
-        </li>
-      ];
-    }
-  }
-
   // renderLinks() {
   //   if (this.props.authenticated) {
-  //     return (<li className="nav-item" key={0}>
+  //     return [<li className="nav-item" key={0}>
   //       <Link className="nav-link" onClick={this.logout} >Sign Out</Link>
-  //     </li>);
+  //     </li>,
+  //     <li className="nav-item" key={1}>
+  //       <Link className="nav-link" to="/oauth" >google sign-in</Link>
+  //     </li>];
   //   } else {
   //     return [
   //       <li className="nav-item" key={1}>
@@ -74,6 +57,26 @@ class Header extends Component {
   //     ];
   //   }
   // }
+
+  renderLinks() {
+    if (this.props.authenticated) {
+      return (<li className="nav-item" key={0}>
+        <Link className="nav-link" onClick={this.logout} >Sign Out</Link>
+      </li>);
+    } else {
+      return [
+        <li className="nav-item" key={0}>
+          <Link className="nav-link" to="/oauth">Sign In with Google</Link>
+        </li>,
+        <li className="nav-item" key={1}>
+          <Link className="nav-link" to="/">Sign In</Link>
+        </li>,
+        <li className="nav-item" key={2}>
+          <Link className="nav-link" to="/signup">Sign Up</Link>
+        </li>
+      ];
+    }
+  }
 
   render() {
     return(

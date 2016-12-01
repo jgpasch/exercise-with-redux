@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
 const UserSchema = new mongoose.Schema({
+  oauthID: { type: Number},
   email: { type: String, lowercase: true, unique: true},
   password: String
 });
