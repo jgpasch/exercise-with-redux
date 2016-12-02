@@ -1,4 +1,5 @@
 import appConfig from '../config/config';
+import {browserHistory} from 'react-router';
 
 export default class ExerciseApi {
   static getAllExercises(cb) {
@@ -35,6 +36,10 @@ export default class ExerciseApi {
       },
       url: appConfig.appUrl + '/api/dates',
       success: function(data) {
+        if (data.path) {
+          browserHistory.push('/oauth');
+        }
+        console.log('this is where it runs ***');
         cb(data);
       }
     });

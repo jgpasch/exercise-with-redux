@@ -13,12 +13,12 @@ import OAuth from './components/auth/OAuth';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={login} />
-    <Route path="/exercises" component={DateExercisePage} />
-    <Route path="/exercises/:date" component={requireAuth(ExercisePage)} />
-    <Route path="/create" component={requireAuth(CreateExerciseContainer)} />
+    <IndexRoute component={DateExercisePage} />
+    <Route path="/login" component={login} />
+    <Route path="/exercises/:date" component={ExercisePage} />
+    <Route path="/create" component={CreateExerciseContainer} />
     <Route path="/signout" component={logout} />
     <Route path="/signup" component={signup} />     
-    <Route path="/oauth" component={OAuth} />      
+    <Route path="/oauth" component={OAuth} />         
   </Route>
 );

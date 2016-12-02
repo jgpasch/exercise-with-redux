@@ -17,14 +17,11 @@ const GoogleStrategy = new GS({
     // be associated with a user record in the application's database, which
     // allows for account linking and authentication with other identity
     // providers.
-      // console.log(accessToken);
-      // req['myAccessToken'] = accessToken;
-      console.log('i am running now');
+      console.log(req.session);
       User.findOne({ oauthID: profile.id }, function(err, user) {
         if (err) return done(err, false);
 
         if (user) { 
-          // user.accessToken = accessToken;
           return done(null, user);
         } else {
           const newUser = new User({
@@ -43,18 +40,19 @@ const GoogleStrategy = new GS({
       });
   });
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user);
-// });
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
 
-// passport.deserializeUser(function(id, done) {
-//   console.log(id);
-//   User.findById(id._id, function(err, user){
-//       if(!err) {
-//         done(null, user);
-//       } else done(err, null);
-//   });
-// });
+passport.deserializeUser(function(id, done) {
+  
+  User.findById(id, function(err, user){
+      console.log(id);
+      if(!err) {
+        done(null, user);
+      } else done(err, null);
+  });
+});
 
 passport.use(GoogleStrategy);
 
