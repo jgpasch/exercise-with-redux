@@ -13,7 +13,7 @@ export default {
   target: 'web',
   output: {
     path: __dirname + '/dist', // Note: Physical files are only output by the production build task `npm run build`.
-    publicPath: 'http://127.0.0.1:8000/',
+    publicPath: 'http://localhost:8000/',
     filename: 'bundle.js'
   },
   devServer: {
