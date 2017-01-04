@@ -3,7 +3,6 @@ import path from 'path';
 import passport from 'passport';
 import './passport/jwtStrategy';
 import './passport/localStrategy';
-import './passport/googleStrategy';
 import Exercise from '../tools/models/Exercise';
 import _ from 'lodash';
 import { signUpCtrl, signInCtrl } from './controllers/auth';
@@ -19,16 +18,6 @@ const requireJwtAuth = passport.authenticate('jwt', {session: false});
 
 // POST a new user
 router.post('/signup', signUpCtrl);
-
-router.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login',
-      'https://www.googleapis.com/auth/plus.profile.emails.read'] }));
-
-router.get('/auth/google/callback', 
-  passport.authenticate( 'google', { 
-    successRedirect: '/exercises',
-    failureRedirect: '/'
-  })
-);
 
 //POST login a user
 router.post('/signin', requireSignIn, signInCtrl);

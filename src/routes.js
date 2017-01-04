@@ -8,7 +8,6 @@ import login from './components/auth/login';
 import logout from './components/auth/logout';
 import signup from './components/auth/signup';
 import requireAuth from './components/auth/require_auth';
-import Default from './components/common/default';
 
 export default (
   <Route path="/" component={App}>
@@ -17,8 +16,6 @@ export default (
     <Route path="/exercises/:date" component={requireAuth(ExercisePage)} />
     <Route path="/create" component={requireAuth(CreateExerciseContainer)} />
     <Route path="/signout" component={logout} />
-    <Route path="/signup" component={signup} />
-    <Route path="/oauth" component={Default} />      
-    <Route path="/oauth" component={Default} />      
+    <Route path="/signup" component={signup} />  
   </Route>
 );
