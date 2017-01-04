@@ -10,8 +10,8 @@ import router from './routes';
 import cors from 'cors';
 import passport from 'passport';
 import session from 'express-session';
-import connectMongo from 'connect-mongo';
-const MongoStore = connectMongo(session);
+import User from '../tools/models/User';
+
 
 /* eslint-disable no-console */
 
@@ -19,16 +19,12 @@ const port = appConfig.port;
 const app = express();
 const compiler = webpack(config);
 
-const mongoStoreOptions = {
-  url: 'mongodb://localhost:27017/reactercizeSessions'
-};
 
 const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   secret: appConfig.secret,
-  signed: true,
-  store: new MongoStore(mongoStoreOptions)
+  signed: true
 };
 
 // Static Image serving
@@ -52,8 +48,34 @@ app.use(session(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(id, done) {
+  console.log(id);
+  User.findById(id._id, function(err, user){
+      if(!err) {
+        done(null, user);
+      } else done(err, null);
+  });
+});
+
+// passport.use(GoogleStrategy);
+
+
+
+
+
+
+// Passport
+
+
+
 // CORS
 app.use(cors());
+
+
 
 // Router setup
 app.use(router);
@@ -69,6 +91,8 @@ db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', () => {
   console.log('mongoose connected');
 });
+
+
 
 app.listen(port, function(err) {
   if (err) {

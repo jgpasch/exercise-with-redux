@@ -4,7 +4,6 @@ class OAuth extends Component {
   constructor(props) {
     super(props);
     this.componentDidMount = this.componentDidMount.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -13,12 +12,6 @@ class OAuth extends Component {
     //   console.log(response);
     // });
   }
-
-  // handleClick() {
-  //   $.get('https://www.googleapis.com/oauth2/v2/userinfo', function(data) {
-  //     console.log(data);
-  //   });
-  // }
 
   render() {
     

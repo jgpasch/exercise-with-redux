@@ -20,11 +20,12 @@ const requireSignIn = passport.authenticate('local', {session: false});
 const requireJwtAuth = passport.authenticate('jwt', {session: false});
 
 function authRequired (req, res, next) {
+  console.log('inside authRequired');
   if (!req.user) {
-    // no user is logged in
-    return res.json({path: '/oauth'});
-    // next();
+    console.log('no user is logged in');
+    return res.redirect('/');
   }
+  console.log(req.user);
   next();
 }
 
@@ -46,18 +47,12 @@ router.get('/auth/google/callback',
   })
 );
 
-// router.get('/api/token', authRequired, function(req, res, next) {
-//   console.log(req.session);
-//   res.send({ it: "worked"});
-// });
-
 //POST login a user
 router.post('/signin', requireSignIn, signInCtrl);
 
 // POST an exercise
-router.post('/api/exercises', authRequired, (req, res) => {
+router.post('/api/exercises', requireJwtAuth, (req, res) => {
   let isError = false;
-  
   
   if (Object.keys(req.body).length < 5) {
     isError = true;
@@ -86,7 +81,7 @@ router.post('/api/exercises', authRequired, (req, res) => {
 });
 
 // GET exercises
-router.get('/api/exercises', authRequired, (req,res) => {
+router.get('/api/exercises', requireJwtAuth, (req,res) => {
   Exercise.find({}, (err, results) => {
     if (err)
     res.send(results);
@@ -94,7 +89,7 @@ router.get('/api/exercises', authRequired, (req,res) => {
 });
 
 // GET exercises by date
-router.get('/api/exercises/:date', authRequired, (req, res) => {
+router.get('/api/exercises/:date', requireJwtAuth, (req, res) => {
   const dateObj = new Date(req.params.date);  
   // debugger;
   let dateProps = {
@@ -114,11 +109,6 @@ router.get('/api/exercises/:date', authRequired, (req, res) => {
 // GET all unique dates
 router.get('/api/dates', authRequired, (req, res) => {
   // console.log(req.session);
-  console.log('\ntrying to print my google access token');
-  // console.log(req.user.googleAccessToken);
-  console.log('passport session is');
-  console.log(req.user);
-  console.log('\n');
   Exercise.find({}, (err, results) => {
     let uniqDates = getUniqueDates(results);
     res.send(uniqDates);

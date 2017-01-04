@@ -13,14 +13,12 @@ import './css/custom.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import $ from '../node_modules/jquery/dist/jquery.min';
 import '../node_modules/bootstrap/dist/js/bootstrap.min';
-import cookie from 'react-cookie';
 
 /*eslint-disable no-console*/
 
 const store = configureStore();
 
 const token = localStorage.getItem('token');
-
 
 if (token) {
   console.log('user is already logged in');
