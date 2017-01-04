@@ -14,7 +14,7 @@ import OAuth from './components/auth/OAuth';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={login} />
-    <Route path="/exercises" component={DateExercisePage} />
+    <Route path="/exercises" component={requireAuth(DateExercisePage)} />
     <Route path="/exercises/:date" component={requireAuth(ExercisePage)} />
     <Route path="/create" component={requireAuth(CreateExerciseContainer)} />
     <Route path="/signout" component={logout} />

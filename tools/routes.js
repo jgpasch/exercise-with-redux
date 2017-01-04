@@ -7,8 +7,6 @@ import './passport/googleStrategy';
 import Exercise from '../tools/models/Exercise';
 import _ from 'lodash';
 import { signUpCtrl, signInCtrl } from './controllers/auth';
-import jwt from 'jwt-simple';
-import config from '../src/config/config';
 
 /* eslint-disable no-console */
 
@@ -19,26 +17,11 @@ const requireSignIn = passport.authenticate('local', {session: false});
 // passport.use(jwtLogin);
 const requireJwtAuth = passport.authenticate('jwt', {session: false});
 
-function authRequired (req, res, next) {
-  console.log('inside authRequired');
-  if (!req.user) {
-    console.log('no user is logged in');
-    return res.redirect('/');
-  }
-  console.log(req.user);
-  next();
-}
-
 // POST a new user
 router.post('/signup', signUpCtrl);
 
 router.get('/auth/google', passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login',
       'https://www.googleapis.com/auth/plus.profile.emails.read'] }));
-
-function attachToken(req, res, next) {
-  const timestamp = new Date().getTime();
-  res.token = jwt.encode({sub: 1, iat: timestamp}, config.secret);
-}
 
 router.get('/auth/google/callback', 
   passport.authenticate( 'google', { 
@@ -90,7 +73,7 @@ router.get('/api/exercises', requireJwtAuth, (req,res) => {
 
 // GET exercises by date
 router.get('/api/exercises/:date', requireJwtAuth, (req, res) => {
-  const dateObj = new Date(req.params.date);  
+  const dateObj = new Date(req.params.date);
   // debugger;
   let dateProps = {
     year: dateObj.getYear() + 1900,
@@ -104,11 +87,8 @@ router.get('/api/exercises/:date', requireJwtAuth, (req, res) => {
   });
 });
 
-
-
 // GET all unique dates
-router.get('/api/dates', authRequired, (req, res) => {
-  // console.log(req.session);
+router.get('/api/dates', requireJwtAuth, (req, res) => {
   Exercise.find({}, (err, results) => {
     let uniqDates = getUniqueDates(results);
     res.send(uniqDates);
