@@ -26,7 +26,7 @@ class SignUp extends Component {
     const { handleSubmit} = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.handleSignUp)} className="push-down-40">
+      <form onSubmit={handleSubmit(this.handleSignUp)} className="auth-form">
           <Field component={renderField} name="email" type="text" label="email" myId="email1"/>
 
           <Field component={renderField} name="password" type="password" label="password" myId="password1" />
@@ -41,7 +41,7 @@ class SignUp extends Component {
 
 function validate(values) {
   const errors = {};
-  
+
   //check for empty email
   if (!values.email) {
     errors.email = 'Email is required';

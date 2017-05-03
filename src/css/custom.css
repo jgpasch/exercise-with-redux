@@ -1,5 +1,17 @@
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #bbb;
+}
+
+#app {
+  height: 100%;
+}
+
+#app-container {
+  height: 100%;
 }
 
 #header {
@@ -63,7 +75,7 @@ body {
 }
 
 .selected {
-  background-color: rgb(92,192,222);  
+  background-color: rgb(92,192,222);
 }
 
 .exercise.one {
@@ -83,8 +95,20 @@ body {
   display: block !important;
  }
 
- .push-down-40 {
-   margin-top: 40px;
+ .auth-form-container {
+  display: table;
+  height: 100%;
+  width: 100%;
+ }
+
+ .auth-form-wrap {
+  display: table-cell;
+  vertical-align: middle;
+ }
+
+ .auth-form {
+   width: 400px;
+   margin: 0 auto;
  }
 
 #ddiv {
@@ -111,7 +135,7 @@ body {
   border-radius: 4px;
   padding: 10px 16px;
 }
-  
+
 .btn-lg {
   font-size: 18px;
   line-height: 1.33;
