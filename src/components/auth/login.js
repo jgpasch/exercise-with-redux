@@ -30,18 +30,19 @@ class Login extends Component {
     return (
             <div className="auth-form-container">
               <div className="auth-form-wrap">
+                <div className="login-image-wrapper">
+                  <div className="login-dumbell"></div>
+                </div>
                 <form onSubmit={handleSubmit(this.handleFormSubmit)} className="auth-form">
                   <fieldset className="form-group">
-                    <label>Email:</label>
-                    <Field name="email" component="input" className="form-control" />
+                    <Field name="email" component="input" placeholder="email" className="form-control custom-input" />
                   </fieldset>
 
                   <fieldset className="form-group">
-                    <label>Password:</label>
-                    <Field name="password" component="input" type="password" className="form-control" />
+                    <Field name="password" component="input" type="password" placeholder="password" className="form-control custom-input" />
                   </fieldset>
                   {this.renderAlert()}
-                  <button action="submit" className="btn btn-primary center-me">Sign In</button>
+                  <button action="submit" className="btn custom-login-btn">Sign In</button>
                 </form>
               </div>
             </div>);
